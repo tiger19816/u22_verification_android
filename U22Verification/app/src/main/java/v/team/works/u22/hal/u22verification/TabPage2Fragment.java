@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 /**
  * TabLayoutのFragmentクラス2.
+ * Fragmentはレイアウトxmlとセットになっている。
+ * Fragmentを設定したTab内で行われる処理は、このクラス内に記述する。
  *
  * @author Taiga Hirai
  */
@@ -48,8 +50,8 @@ public class TabPage2Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         int page = getArguments().getInt(ARG_PARAM, 0);
-        View view = inflater.inflate(R.layout.fragment_tab_page1, container, false);
-        TextView tvTextView = view.findViewById(R.id.tvTabText);
+        View view = inflater.inflate(R.layout.fragment_tab_page2, container, false);
+        TextView tvTextView = view.findViewById(R.id.tvTab2Text);
         tvTextView.setText("Fragment2-Page" + page);
 
         return view;

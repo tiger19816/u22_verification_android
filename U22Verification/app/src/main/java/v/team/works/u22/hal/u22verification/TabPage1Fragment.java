@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 /**
  * TabLayoutのFragmentクラス1.
+ * Fragmentはレイアウトxmlとセットになっている。
+ * Fragmentを設定したTab内で行われる処理は、このクラス内に記述する。
  *
  * @author Taiga Hirai
  */

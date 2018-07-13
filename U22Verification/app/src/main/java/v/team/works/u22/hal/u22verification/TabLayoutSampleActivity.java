@@ -10,6 +10,8 @@ import android.os.Bundle;
 
 /**
  * タブレイアウトサンプル画面のActivityクラス.
+ * ViewPager.OnPageChangeListenerを実装(implements)する。
+ * 各ページのFragmentのOnFragmentInteractionListenerを実装(implements)する。
  *
  * @author Taiga Hirai
  */
@@ -29,8 +31,17 @@ public class TabLayoutSampleActivity extends AppCompatActivity implements ViewPa
 
         //表示Pageに必要な項目を設定
         FragmentPagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+
+            /**
+             * Tabの内を売を設定するメソッド.
+             * switch文で設定するFragmentを分けている。
+             *
+             * @param position 設定するTabのページ番号(0から)。
+             * @return Tabページに設定するFragment。
+             */
             @Override
             public Fragment getItem(int position) {
+                //各タブに設定するFragmentを選択する。
                 switch (position) {
                     case 0:
                         return TabPage1Fragment.newInstance(position + 1);
@@ -61,8 +72,10 @@ public class TabLayoutSampleActivity extends AppCompatActivity implements ViewPa
         tabLayout.setupWithViewPager(viewPager);
 
         //初期に選択されているTabを設定(0始まり)
-        tabLayout.getTabAt(1).select();
+        tabLayout.getTabAt(2).select();
     }
+
+    //以下の内容を実装する必要がある。（空で問題ない）
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -79,5 +92,4 @@ public class TabLayoutSampleActivity extends AppCompatActivity implements ViewPa
     @Override
     public void onFragmentInteraction(Uri uri) {
     }
-
 }
