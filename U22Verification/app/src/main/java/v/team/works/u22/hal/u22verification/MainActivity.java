@@ -41,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btVerification06:
                 intent = new Intent(MainActivity.this, MainActivity.class);
                 break;
+            case R.id.btVerification07:
+                intent = new Intent(MainActivity.this, MainActivity.class);
+                break;
+            case R.id.btSmple01:
+                intent = new Intent(MainActivity.this, TabLayoutSampleActivity.class);
+                break;
         }
         startActivity(intent);
     }

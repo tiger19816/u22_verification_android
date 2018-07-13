@@ -7,4 +7,14 @@
     <string name="bt_verification_04">検証04</string>
     <string name="bt_verification_05">検証05</string>
     <string name="bt_verification_06">検証06</string>
+    <string name="bt_verification_07">検証07</string>
+    <string name="bt_sample_01">サンプル01 Tabレイアウト</string>
+
+    <!-- Tabサンプル画面用 -->
+    <string name="tab_title_home">ホーム</string>
+    <string name="tab_title_page">ページ</string>
+    <string name="tab_title_option">オプション</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
