@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
      * ボタンが押された時のイベント処理用メソッド.
      * Intentをnewする時のの第二引数を各検証画面に変更する。
      *
-     * @param view
+     * @param view 画面部品。
      */
     public void onButtonClickListener(View view) {
         Intent intent = null;
@@ -44,8 +44,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btVerification07:
                 intent = new Intent(MainActivity.this, MainActivity.class);
                 break;
-            case R.id.btSmple01:
+            case R.id.btSample01:
                 intent = new Intent(MainActivity.this, TabLayoutSampleActivity.class);
+                break;
+            case R.id.btSample02:
+                intent = new Intent(MainActivity.this, QrCodeSampleActivity.class);
                 break;
         }
         startActivity(intent);

@@ -9,6 +9,7 @@
     <string name="bt_verification_06">検証06</string>
     <string name="bt_verification_07">検証07</string>
     <string name="bt_sample_01">サンプル01 Tabレイアウト</string>
+    <string name="bt_sample_02">サンプル02 QRコード</string>
 
     <!-- Tabサンプル画面用 -->
     <string name="tab_title_home">ホーム</string>
@@ -16,4 +17,11 @@
     <string name="tab_title_option">オプション</string>
     <string name="tab_tv_text">タブごとに違うFragmentを設定すると、レイアウトの違う画面を作成できる。</string>
     <string name="tab_tv_page">Page</string>
+
+    <!-- QRコードサンプル画面用 -->
+    <string name="qr_activity_title">QRコードサンプル</string>
+    <string name="qr_tv_text_label">QRコード化する文字列</string>
+    <string name="qr_bt_display">QRコード表示</string>
+    <string name="qr_bt_reader">QRコードリーダを起動</string>
+    <string name="qr_tv_read_text_label">読み取った文字列</string>
 </resources>
