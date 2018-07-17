@@ -10,7 +10,8 @@ import android.widget.ListView;
 
 public class MapLayoutSampleActivity extends AppCompatActivity {
 
-    private ListView linearContentsArea;    // 内容エリア
+    private ListView linearContentsArea;    // 内容エリア]
+    private LinearLayout linearLayoutArea;
     private FloatingActionButton fab;
     private final static int DURATION = 400;    // アニメーションにかける時間(ミリ秒)
 
@@ -24,8 +25,10 @@ public class MapLayoutSampleActivity extends AppCompatActivity {
         // ボタンの結び付け
         fab = findViewById(R.id.fabOpenList);
 
+        linearLayoutArea = findViewById(R.id.llMain);
+
         // ExpandするViewの元のサイズを保持
-        final int originalHeight = linearContentsArea.getHeight();
+        final int originalHeight = linearLayoutArea.getHeight() / 2;
 
         // 内容エリアを閉じるアニメーション
         ResizeAnimation closeAnimation = new ResizeAnimation(linearContentsArea, -originalHeight, originalHeight);
@@ -43,7 +46,7 @@ public class MapLayoutSampleActivity extends AppCompatActivity {
         fab = findViewById(R.id.fabOpenList);
 
         // ExpandするViewの元のサイズを保持
-        final int originalHeight = linearContentsArea.getHeight();
+        final int originalHeight = linearLayoutArea.getHeight() / 2;
 
         // 展開ボタン押下時
         fab.setOnClickListener(new View.OnClickListener() {
