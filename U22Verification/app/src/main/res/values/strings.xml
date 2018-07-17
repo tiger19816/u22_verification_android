@@ -24,4 +24,5 @@
     <string name="qr_bt_display">QRコード表示</string>
     <string name="qr_bt_reader">QRコードリーダを起動</string>
     <string name="qr_tv_read_text_label">読み取った文字列</string>
+    <string name="title_activity_now_map_sample">Map</string>
 </resources>
