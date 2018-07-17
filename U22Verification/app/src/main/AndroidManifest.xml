@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".TabLayoutSampleActivity" />
-        <activity android:name=".QrCodeSampleActivity"></activity>
+        <activity android:name=".QrCodeSampleActivity" />
+        <activity android:name=".MapLayoutSampleActivity"></activity>
     </application>
 
 </manifest>
