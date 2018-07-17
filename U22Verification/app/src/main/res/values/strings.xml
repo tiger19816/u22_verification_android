@@ -24,4 +24,7 @@
     <string name="qr_bt_display">QRコード表示</string>
     <string name="qr_bt_reader">QRコードリーダを起動</string>
     <string name="qr_tv_read_text_label">読み取った文字列</string>
+
+    <!-- 検証4サンプル画面用 -->
+    <string name="bt_camera">カメラ起動</string>
 </resources>
