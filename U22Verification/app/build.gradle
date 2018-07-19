@@ -6,14 +6,26 @@ android {
         applicationId "v.team.works.u22.hal.u22verification"
         minSdkVersion 15
         targetSdkVersion 27
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        debug {
+            storeFile file("../keystore/u22_verification.jks")
+            storePassword "u22store"
+            keyAlias "u22verification"
+            keyPassword "u22key"
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
         }
     }
 }
@@ -28,4 +40,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+    implementation 'com.google.android.gms:play-services-maps:15.0.1'
+    implementation 'com.android.support:multidex:1.0.0'
 }

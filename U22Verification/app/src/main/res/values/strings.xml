@@ -7,7 +7,7 @@
     <string name="bt_verification_04">検証04</string>
     <string name="bt_verification_05">検証05</string>
     <string name="bt_verification_06">検証06</string>
-    <string name="bt_verification_07">検証07</string>
+    <string name="bt_verification_07">検証07 Map画面サンプル</string>
     <string name="bt_sample_01">サンプル01 Tabレイアウト</string>
     <string name="bt_sample_02">サンプル02 QRコード</string>
 
@@ -24,4 +24,5 @@
     <string name="qr_bt_display">QRコード表示</string>
     <string name="qr_bt_reader">QRコードリーダを起動</string>
     <string name="qr_tv_read_text_label">読み取った文字列</string>
+    <string name="title_activity_maps_sample">Map</string>
 </resources>
