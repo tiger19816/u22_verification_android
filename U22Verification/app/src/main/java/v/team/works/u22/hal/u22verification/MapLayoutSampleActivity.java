@@ -1,6 +1,9 @@
 package v.team.works.u22.hal.u22verification;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,17 +11,35 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-public class MapLayoutSampleActivity extends AppCompatActivity {
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+/**
+ * Map画面のレイアウトサンプルクラス.
+ *
+ * @author Taiga Hirai
+ */
+public class MapLayoutSampleActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private ListView linearContentsArea;    // 内容エリア]
     private LinearLayout linearLayoutArea;
     private FloatingActionButton fab;
     private final static int DURATION = 400;    // アニメーションにかける時間(ミリ秒)
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_layout_sample);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mvMaps);
+        mapFragment.getMapAsync(this);
 
         // 内容エリアの結び付け
         linearContentsArea = findViewById(R.id.lvList);
@@ -34,6 +55,16 @@ public class MapLayoutSampleActivity extends AppCompatActivity {
         ResizeAnimation closeAnimation = new ResizeAnimation(linearContentsArea, -originalHeight, originalHeight);
         closeAnimation.setDuration(DURATION);
         linearContentsArea.startAnimation(closeAnimation);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(34.699886, 135.493033);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("HAL大阪"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     @Override
