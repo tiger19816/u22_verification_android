@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(MainActivity.this, MainActivity.class);
                 break;
             case R.id.btVerification07:
-                intent = new Intent(MainActivity.this, MainActivity.class);
+                intent = new Intent(MainActivity.this, MapLayoutSampleActivity.class);
                 break;
             case R.id.btSample01:
                 intent = new Intent(MainActivity.this, TabLayoutSampleActivity.class);

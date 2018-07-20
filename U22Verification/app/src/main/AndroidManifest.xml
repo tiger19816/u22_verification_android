@@ -40,6 +40,7 @@
         <activity
             android:name=".NowMapSampleActivity"
             android:label="@string/title_activity_now_map_sample"></activity>
+        <activity android:name=".MapLayoutSampleActivity"></activity>
     </application>
 
 </manifest>
