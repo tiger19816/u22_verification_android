@@ -12,6 +12,7 @@ import android.location.LocationProvider;
 import android.media.ExifInterface;
 import android.media.Image;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -87,6 +88,7 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
 
         ivDisplay = findViewById(R.id.ivDisplay);
 
+        //位置情報へのアクセス許可の確認
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION,
@@ -102,7 +104,6 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
 
     public void locationStart() {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
         if (locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             Log.d("debug", "location manager Enabled");
         }
@@ -119,7 +120,6 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
             Log.d("debug", "checkSelfPermission false");
             return;
         }
-
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 50, this);
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 50, this);
     }
@@ -135,8 +135,7 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
             }
             else {
                 // それでも拒否された時の対応
-                Toast toast = Toast.makeText(this, "これ以上なにもできません", Toast.LENGTH_SHORT);
-                toast.show();
+                Toast.makeText(this, "これ以上なにもできません", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -181,6 +180,7 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
         // convertの出力サンプル => 73:9:57.03876
         String[] lonDMS = Location.convert(location.getLongitude(), Location.FORMAT_SECONDS).split(":");
         StringBuilder lon = new StringBuilder();
+
         // 経度の正負でREFの値を設定（経度からは符号を取り除く）
         if (lonDMS[0].contains("-")) {
             longitudeRef = "W";
@@ -191,6 +191,7 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
         lon.append("/1,");
         lon.append(lonDMS[1]);
         lon.append("/1,");
+
         // 秒は小数の桁を数えて精度を求める
         int index = lonDMS[2].indexOf('.');
         if (index == -1) {
@@ -211,6 +212,7 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
         // convertの出力サンプル => 73:9:57.03876
         String[] latDMS = Location.convert(location.getLatitude(), Location.FORMAT_SECONDS).split(":");
         StringBuilder lat = new StringBuilder();
+
         // 経度の正負でREFの値を設定（経度からは符号を取り除く）
         if (latDMS[0].contains("-")) {
             latitudeRef = "S";
@@ -221,6 +223,7 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
         lat.append("/1,");
         lat.append(latDMS[1]);
         lat.append("/1,");
+
         // 秒は小数の桁を数えて精度を求める
         index = latDMS[2].indexOf('.');
         if (index == -1) {
@@ -250,17 +253,6 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
             exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, longtude); //軽度
             exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, longitudeRef);
 
-            // 位置情報をExifにセットするサンプル
-//            exif.setAttribute(ExifInterface.TAG_GPS_LATITUDE, "35/1,36/1,1538936/100000"); //緯度
-//            exif.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF, "N"); //緯度の符号（北か南か）
-//            exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, "139/1,34/1,2885044/100000"); //経度
-//            exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, "E"); //経度の符号(東系か西系か)
-
-            Log.d("緯度", latitude);
-            Log.d("緯度方角", latitudeRef);
-            Log.d("経度", longtude);
-            Log.d("経度方角", longitudeRef);
-
             //保存
             exif.saveAttributes();
         }
@@ -284,6 +276,7 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
         return s;
     }
 
+    //カメラ起動ボタンが押されたとき
     public void onClickCameraStart(View view) {
 
         //インテントの生成
@@ -292,11 +285,24 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
         //インテントのアクションを指定する
         _intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        //標準搭載されているカメラアプリのアクティビティを起動する
-        startActivityForResult(_intent, CAMERA_REQUEST_CODE);
-
-        //アクティビティを閉じる
-//        finish();
+        //カメラへのアクセス許可の確認
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.CAMERA,
+            }, 1000);
+        }
+        else {
+            //カメラのアクセスの許可を求める
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1000);
+            }
+            //拒否された場合
+            else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA,}, 1000);
+            }
+            //標準搭載されているカメラアプリのアクティビティを起動する
+            startActivityForResult(_intent, CAMERA_REQUEST_CODE);
+        }
     }
 
     @Override
@@ -310,12 +316,9 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
                     _bitmap = (Bitmap) data.getExtras().get("data");
 
                     try {
-                        Log.d("地点", "突入");
-
                         //取得した画像をファイルに保存（※保存完了が反映するまで少し時間がかかります）
                         mediaStorage = Environment.getExternalStorageDirectory();
                         mediaFile = new File(mediaStorage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", getFileName());
-                        Log.d("ファイル", mediaFile.toString());
                         FileOutputStream outStream = new FileOutputStream(mediaFile);
                         _bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
                         exifWrite(mediaFile);
@@ -324,7 +327,6 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
                         float[] latLong = new float[2];
                         exif.getLatLong(latLong);
                         String info = String.format("%f,%f", latLong[0],latLong[1]);
-                        Log.d("位置情報"  , info);
                         TextView tvLocation = findViewById(R.id.tvLocation);
                         tvLocation.setText("位置情報：" + info);
 
