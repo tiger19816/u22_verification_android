@@ -88,7 +88,42 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
 
         ivDisplay = findViewById(R.id.ivDisplay);
 
-        //位置情報へのアクセス許可の確認
+        //ストレージへのアクセス許可の確認
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            }, 1000);
+        }
+        else {
+            //ストレージのアクセスの許可を求める
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+            }
+            //拒否された場合
+            else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,}, 1000);
+            }
+
+            //位置情報のアクセス許可へ
+            RequestLocationPermission();
+        }
+
+//        //位置情報へのアクセス許可の確認
+//        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, new String[]{
+//                    Manifest.permission.ACCESS_FINE_LOCATION,
+//            }, 1000);
+//        }
+//        else {
+//            locationStart();
+//
+//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 50, this);
+//            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 50, this);
+//        }
+    }
+
+    //位置情報へのアクセス許可の確認
+    public void RequestLocationPermission() {
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION,
