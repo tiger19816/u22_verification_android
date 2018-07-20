@@ -10,6 +10,7 @@
     <string name="bt_verification_07">検証07 Map画面サンプル</string>
     <string name="bt_sample_01">サンプル01 Tabレイアウト</string>
     <string name="bt_sample_02">サンプル02 QRコード</string>
+    <string name="bt_sample_03">サンプル03 サーバとの通信</string>
 
     <!-- Tabサンプル画面用 -->
     <string name="tab_title_home">ホーム</string>
@@ -25,4 +26,10 @@
     <string name="qr_bt_reader">QRコードリーダを起動</string>
     <string name="qr_tv_read_text_label">読み取った文字列</string>
     <string name="title_activity_maps_sample">Map</string>
+
+    <!-- サーバアクセスサンプル画面用 -->
+    <string name="tv_login_title">ログイン</string>
+    <string name="tv_login_id">ID</string>
+    <string name="tv_login_pass">Password</string>
+    <string name="tv_login_new_account"><u>アカウントを作成</u></string>
 </resources>
