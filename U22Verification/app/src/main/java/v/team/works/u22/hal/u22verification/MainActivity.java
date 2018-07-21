@@ -23,8 +23,11 @@ public class MainActivity extends AppCompatActivity {
     public void onButtonClickListener(View view) {
         Intent intent = null;
         switch (view.getId()) {
+            /**
+             * 検証01「サーバからプッシュ通知」 by Yuki Yoshida.
+             */
             case R.id.btVerification01:
-                intent = new Intent(MainActivity.this, MainActivity.class);
+                intent = new Intent(MainActivity.this, Verification01Activity.class);
                 break;
             case R.id.btVerification02:
                 intent = new Intent(MainActivity.this, MainActivity.class);
