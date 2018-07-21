@@ -82,6 +82,8 @@ public class ServerAccessSampleActivity extends AppCompatActivity {
             String urlStr = params[0];
             String id = params[1];
             String password = params[2];
+
+            //POSTで送りたいデータ
             String postData = "id=" + id + "&password=" + password;
 
             HttpURLConnection con = null;
