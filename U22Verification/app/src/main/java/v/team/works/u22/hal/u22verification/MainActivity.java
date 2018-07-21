@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * ボタンが押された時のイベント処理用メソッド.
-     * Intentをnewする時のの第二引数を各検証画面に変更する。
+     * Intentをnewする時のの第二引数を各検証画面に変更する
      *
      * @param view 画面部品。
      */
