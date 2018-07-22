@@ -32,4 +32,7 @@
     <string name="tv_login_id">ID</string>
     <string name="tv_login_pass">Password</string>
     <string name="tv_login_new_account"><u>アカウントを作成</u></string>
+
+    <!-- 検証02画面用 -->
+    <string name="title_activity_verification02">Map</string>
 </resources>
