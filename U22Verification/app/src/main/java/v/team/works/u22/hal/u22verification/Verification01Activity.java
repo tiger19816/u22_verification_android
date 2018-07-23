@@ -94,6 +94,14 @@ public class Verification01Activity extends AppCompatActivity {
 
     public class NotificationChannelManager {
 
+        /**
+         * 通知チャンネルを設定するメソッド。Android O以降で必須。
+         *
+         * @param context アプリケーションコンテキスト。
+         * @param channelId チャンネルID。
+         * @param channelTitle チャンネル名。
+         * @param channelDescription チャンネルの説明。
+         */
         public void create(Context context, String channelId, String channelTitle, String channelDescription) {
             String title = channelTitle;
             String description = channelDescription;
