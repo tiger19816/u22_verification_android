@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btSample02:
                 intent = new Intent(MainActivity.this, QrCodeSampleActivity.class);
                 break;
+            case R.id.btSample03:
+                intent = new Intent(MainActivity.this, ServerAccessSampleActivity.class);
+                break;
         }
         startActivity(intent);
     }
