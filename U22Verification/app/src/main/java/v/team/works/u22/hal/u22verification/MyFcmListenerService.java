@@ -1,6 +1,5 @@
 package v.team.works.u22.hal.u22verification;
 
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -19,6 +18,11 @@ public class MyFcmListenerService extends FirebaseMessagingService {
 
     private final static String TAG = "通知受信";
 
+    /**
+     * Firebaseを利用し、サーバから通知を受信するメソッド。
+     *
+     * @param message サーバから受信する通知内容。
+     */
     @Override
     public void onMessageReceived(RemoteMessage message){
         String msg = message.getNotification().getBody();
@@ -26,6 +30,12 @@ public class MyFcmListenerService extends FirebaseMessagingService {
         sendNotification("Verification01からの通知", msg);
     }
 
+    /**
+     * 通知を表示するメソッド。
+     *
+     * @param subTitle 小タイトル。
+     * @param message 表示内容。
+     */
     private void sendNotification(String subTitle, String message) {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -38,12 +48,10 @@ public class MyFcmListenerService extends FirebaseMessagingService {
 //                .setStyle(new NotificationCompat.BigTextStyle().bigText(message)) // 表示スタイルの設定(?)
 //                .setContentIntent(pendingIntent)  // タップした際の遷移先インテントの設定(?)
                 ;
-
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // SDKバージョンが26以上の場合、通知チャンネルの設定を行う。
             notificationBuilder.setChannelId("verification_01");
         }
-
 
         notificationManager.notify(0 , notificationBuilder.build());    // チャンネルがnull?
     }
