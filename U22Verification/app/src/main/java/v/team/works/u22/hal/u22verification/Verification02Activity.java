@@ -80,6 +80,17 @@ public class Verification02Activity extends FragmentActivity implements OnMapRea
                 return false;
             }
         });
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+//                Toast.makeText(getApplicationContext(), marker.getId() + "と" + marker.getTitle(),Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Verification02Activity.this,Verification02DetailsActivity.class);
+                intent.putExtra("markerName", marker.getTitle());
+                intent.putExtra("markerPosition", marker.getPosition());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
