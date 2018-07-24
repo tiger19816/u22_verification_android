@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(MainActivity.this, MainActivity.class);
                 break;
             case R.id.btVerification03:
-                intent = new Intent(MainActivity.this, MainActivity.class);
+                intent = new Intent(MainActivity.this, NowMapSampleActivity.class);
                 break;
             case R.id.btVerification04:
                 intent = new Intent(MainActivity.this, MainActivity.class);
@@ -49,9 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btSample02:
                 intent = new Intent(MainActivity.this, QrCodeSampleActivity.class);
-                break;
-            case R.id.btSample03:
-                intent = new Intent(MainActivity.this, ServerAccessSampleActivity.class);
                 break;
         }
         startActivity(intent);
