@@ -104,7 +104,7 @@ public class ServerAccessSampleActivity extends AppCompatActivity {
                 con.setReadTimeout(10000);
                 con.setConnectTimeout(20000);
 
-                con.connect();
+                con.setDoOutput(true);
 
                 //POSTデータ送信処理。InputStream処理よりも先に記述する。
                 OutputStream os = null;
