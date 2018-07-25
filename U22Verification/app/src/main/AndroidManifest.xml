@@ -42,6 +42,7 @@
         <activity android:name=".TabLayoutSampleActivity" />
         <activity android:name=".QrCodeSampleActivity" />
         <activity android:name=".MapLayoutSampleActivity" />
+        <activity android:name=".ServerAccessSampleActivity"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
