@@ -27,16 +27,16 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(MainActivity.this, MainActivity.class);
                 break;
             case R.id.btVerification02:
-                intent = new Intent(MainActivity.this, MainActivity.class);
+                intent = new Intent(MainActivity.this, Verification02Activity.class);
                 break;
             case R.id.btVerification03:
                 intent = new Intent(MainActivity.this, MainActivity.class);
                 break;
             case R.id.btVerification04:
-                intent = new Intent(MainActivity.this, MainActivity.class);
+                intent = new Intent(MainActivity.this, CameraStartActivity.class);
                 break;
             case R.id.btVerification05:
-                intent = new Intent(MainActivity.this, MainActivity.class);
+                intent = new Intent(MainActivity.this, ImageUploadActivity.class);
                 break;
             case R.id.btVerification06:
                 intent = new Intent(MainActivity.this, MainActivity.class);
