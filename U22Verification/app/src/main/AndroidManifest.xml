@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <uses-feature
@@ -14,14 +13,19 @@
     <meta-data
         android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" />
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
-    -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <!-- ExifInterface使うための -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- 位置情報取得のための -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <!-- カメラ起動のための -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+  
+    <!-- インターネット接続のための -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -42,7 +46,7 @@
         <activity android:name=".TabLayoutSampleActivity" />
         <activity android:name=".QrCodeSampleActivity" />
         <activity android:name=".MapLayoutSampleActivity" />
-        <activity android:name=".ServerAccessSampleActivity"/>
+        <activity android:name=".Verification02Activity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -54,8 +58,13 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+      
+        <activity android:name=".ServerAccessSampleActivity" />
+        <activity android:name=".Verification02DetailsActivity" />
+        <activity android:name=".ImageUploadActivity" />
+        <activity android:name=".CameraStartActivity" />
 
-        <!-- Yuki Yoshidaが追加 -->
+        <!-- 検証01に必要。 -->
         <activity android:name=".Verification01Activity"/>
         <service android:name=".Verification01Activity$MyInstanceIDListenerService">
             <intent-filter>
@@ -80,7 +89,7 @@
             android:value="false" />
         <meta-data android:name="firebase_analytics_collection_enabled"
             android:value="false" />
-
+      
     </application>
 
 </manifest>
