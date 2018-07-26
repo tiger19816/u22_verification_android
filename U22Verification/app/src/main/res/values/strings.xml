@@ -2,10 +2,10 @@
     <string name="app_name">U22検証アプリ</string>
     <!-- メインメニュー画面用 -->
     <string name="bt_verification_01">検証01</string>
-    <string name="bt_verification_02">検証02</string>
+    <string name="bt_verification_02">検証02 Map-複数のピンを立てて詳細画面へ</string>
     <string name="bt_verification_03">検証03</string>
-    <string name="bt_verification_04">検証04</string>
-    <string name="bt_verification_05">検証05</string>
+    <string name="bt_verification_04">検証04 写真撮影からジオタグの取得</string>
+    <string name="bt_verification_05">検証05 スマホ内のアルバムからサーバに写真を送信</string>
     <string name="bt_verification_06">検証06</string>
     <string name="bt_verification_07">検証07 Map画面サンプル</string>
     <string name="bt_sample_01">サンプル01 Tabレイアウト</string>
@@ -35,4 +35,7 @@
 
     <!-- 検証02画面用 -->
     <string name="title_activity_verification02">Map</string>
+
+    <!-- 検証4サンプル画面用 -->
+    <string name="bt_camera">カメラ起動</string>
 </resources>
