@@ -39,7 +39,7 @@ public class ImageUploadActivity extends Activity implements ImageUploadListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_image_upload);
         imageView = (ImageView) findViewById(R.id.image_view);
         //送信用の画像を選択するギャラリーを開くボタン処理
         findViewById(R.id.imageSelectButton).setOnClickListener(new View.OnClickListener() {
