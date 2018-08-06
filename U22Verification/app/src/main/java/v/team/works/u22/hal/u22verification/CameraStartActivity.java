@@ -1,6 +1,7 @@
 package v.team.works.u22.hal.u22verification;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -68,6 +69,7 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
 
     //カメラ画像を保存するディレクトリ
     static File mediaStorage;
+    final static String StrFileName  ="U22";
     static File mediaFile;
 
     //画像を表示する部分
@@ -140,9 +142,11 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
     public void locationStart() {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            //GPSが利用可能な場合
             Log.d("debug", "location manager Enabled");
-        }
-        else {
+        }else if(locationManager != null && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
+         // ネットワークが利用可能の場合
+        }else {
             // GPSを設定するように促す
             Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
             startActivity(settingsIntent);
@@ -352,8 +356,23 @@ public class CameraStartActivity extends AppCompatActivity implements LocationLi
 
                     try {
                         //取得した画像をファイルに保存（※保存完了が反映するまで少し時間がかかります）
-                        mediaStorage = Environment.getExternalStorageDirectory();
-                        mediaFile = new File(mediaStorage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", getFileName());
+                        mediaStorage = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+
+                        //フォルダーがあるかの確認、なければ作成する。
+                        mediaFile = new File(mediaStorage.getAbsolutePath() + "/" + StrFileName);
+
+                        //フォルダーの確認
+                        if(!mediaFile.exists()){
+                            Log.e("create", "in");
+                            boolean result = mediaFile.mkdirs();
+                            if(! result){
+                                Log.e("error", "brack");
+                                break;
+                            }
+                        }
+
+                        mediaFile = new File(mediaFile.getPath() + "/" +getFileName());
+                        Log.e("URI", mediaFile.getPath());
                         FileOutputStream outStream = new FileOutputStream(mediaFile);
                         _bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
                         exifWrite(mediaFile);
