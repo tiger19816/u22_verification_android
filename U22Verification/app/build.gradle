@@ -2,9 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "v.team.works.u22.hal.u22verification"
-        minSdkVersion 15
+        minSdkVersion 15    // Android O 以上に変更するべきか? by Yuki Yoshida
         targetSdkVersion 27
         multiDexEnabled true
         versionCode 1
@@ -42,4 +43,13 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
     implementation 'com.android.support:multidex:1.0.0'
+
+//    implementation project(':u22-verification-android-01')
+    implementation "com.google.android.gms:play-services-base:15.0.1"   // Playサービス用依存パッケージ by Yuki Yoshida.
+    implementation 'com.google.firebase:firebase-core:16.0.1'  // firebase用依存パッケージ by Yuki Yoshida.
+    implementation 'com.google.firebase:firebase-messaging:17.1.0' // firebase、プッシュ通知用パッケージ by Yuki Yoshida.
+//    implementation 'com.google.firebase:firebase-auth:12.0.1'  // firebase用パッケージ by Yuki Yoshida.
+    implementation 'com.google.android.gms:play-services-gcm:15.0.1' // Playサービス用依存パッケージ by Yuki Yoshida.
 }
+
+apply plugin: 'com.google.gms.google-services'  // firebase用依存プラグイン by Yuki Yoshida.

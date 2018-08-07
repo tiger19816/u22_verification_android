@@ -16,15 +16,18 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * ボタンが押された時のイベント処理用メソッド.
-     * Intentをnewする時のの第二引数を各検証画面に変更する。
+     * Intentをnewする時のの第二引数を各検証画面に変更する
      *
      * @param view 画面部品。
      */
     public void onButtonClickListener(View view) {
         Intent intent = null;
         switch (view.getId()) {
+            /**
+             * 検証01「サーバからプッシュ通知」 by Yuki Yoshida.
+             */
             case R.id.btVerification01:
-                intent = new Intent(MainActivity.this, MainActivity.class);
+                intent = new Intent(MainActivity.this, Verification01Activity.class);
                 break;
             case R.id.btVerification02:
                 intent = new Intent(MainActivity.this, Verification02Activity.class);

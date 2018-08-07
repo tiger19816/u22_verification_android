@@ -24,6 +24,9 @@
 
     <!-- カメラ起動のための -->
     <uses-permission android:name="android.permission.CAMERA"/>
+  
+    <!-- インターネット接続のための -->
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name="android.support.multidex.MultiDexApplication"
@@ -55,11 +58,38 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
+      
         <activity android:name=".ServerAccessSampleActivity" />
         <activity android:name=".Verification02DetailsActivity" />
         <activity android:name=".ImageUploadActivity" />
-        <activity android:name=".CameraStartActivity"></activity>
+        <activity android:name=".CameraStartActivity" />
+
+        <!-- 検証01に必要。 -->
+        <activity android:name=".Verification01Activity"/>
+        <service android:name=".Verification01Activity$MyInstanceIDListenerService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <service android:name=".MyFcmListenerService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@android:drawable/ic_notification_overlay" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@android:color/holo_red_light" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="notification_channel"/>
+        <meta-data android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
+      
     </application>
 
 </manifest>
